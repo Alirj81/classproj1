@@ -1,0 +1,38 @@
+﻿20:00:14:600	Build started at 8:00 PM...
+20:00:14:638	1>------ Build started: Project: Classproject, Configuration: Debug x64 ------
+20:00:14:701	1>Classproject.cpp
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(36,2): error C2969: syntax error: ';': expected member function definition to end with '}'
+20:00:14:898	1>(compiling source file 'Classproject.cpp')
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(46,2): error C2969: syntax error: ';': expected member function definition to end with '}'
+20:00:14:898	1>(compiling source file 'Classproject.cpp')
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(3,7): error C2059: syntax error: 'using namespace'
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(3,20): error C2238: unexpected token(s) preceding ';'
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(6,17): error C3254: 'professor::student': class contains explicit override 'Identification' but does not derive from an interface that contains the function declaration
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(6,17): error C2838: 'Identification': illegal qualified name in member declaration
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(6,17): error C2535: 'void professor::student::Identification(int)': member function already defined or declared
+20:00:14:898	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(43,7):
+20:00:14:898	1>see declaration of 'professor::student::Identification'
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(9,14): error C3240: 'Append_course': must be a non-overloaded abstract member function of 'person'
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(9,14): error C2838: 'Append_course': illegal qualified name in member declaration
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(9,14):
+20:00:14:914	1>An explicit override can only be used for a method that was first introduced in an interface and whose override qualifier is an interface
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(9,14): error C3244: 'void professor::student::Append_course(std::string)': this method was introduced by '<Unknown>' not by 'person'
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(12,15): error C4596: 'Identification': illegal qualified name in member declaration
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(12,15): error C2535: 'void professor::student::Identification(int)': member function already defined or declared
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(43,7):
+20:00:14:914	1>see declaration of 'professor::student::Identification'
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(15,9): error C3254: 'professor::student': class contains explicit override '{ctor}' but does not derive from an interface that contains the function declaration
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(15,9): error C3244: 'professor::student::student(std::string,int,int,std::string)': this method was introduced by '<Unknown>' not by 'person'
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(19,12): error C3254: 'professor::student': class contains explicit override '{ctor}' but does not derive from an interface that contains the function declaration
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(19,12): error C2838: '{ctor}': illegal qualified name in member declaration
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(19,12): error C2535: 'professor::student::student(std::string,int,int,std::string,int)': member function already defined or declared
+20:00:14:914	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(44,2):
+20:00:14:914	1>see declaration of 'professor::student::student'
+20:00:14:915	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(23,10): error C4596: '{ctor}': illegal qualified name in member declaration
+20:00:14:915	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(23,10): error C2535: 'professor::student::student(std::string,int,int,std::string,int)': member function already defined or declared
+20:00:14:915	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.h(44,2):
+20:00:14:915	1>see declaration of 'professor::student::student'
+20:00:14:915	1>C:\Users\Alireza\Documents\C++\Classproject\Classproject\Classproject.cpp(36,1): error C1004: unexpected end-of-file found
+20:00:14:915	1>Done building project "Classproject.vcxproj" -- FAILED.
+20:00:14:922	========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+20:00:14:922	========== Build completed at 8:00 PM and took 00.352 seconds ==========
