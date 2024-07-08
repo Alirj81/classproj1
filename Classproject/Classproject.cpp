@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Classproject.h"
 #include <string.h>
+#include <string>
+#include <fstream>
 using namespace std;
 
 
@@ -42,17 +44,26 @@ void professor::Identification(int staff_ID) {
     cout << staff_ID;
 }
 
+/*bool operator==(const professor& professor, const std::string& name) {
+    return professor.Name == name;
+}
+
+bool operator==(const student& student, const std::string& name) {
+    return student.Name == name;
+}*/
+
 void searchprofs() {
     string pName;
     cin >> pName;
-    for (professor i : professors) {
+    for (auto i : professors) {
         if (i.Name == pName) {
             cout << i.age << endl << i.staff_ID << endl << i.University_name << endl << i.Nat_ID;
         }
     }
 }
-
+// comment
 void addprof() {
+    string file;
     string Name;
     int Nat_ID;
     int age;
@@ -74,20 +85,22 @@ void addprof() {
     int z = obj1.age;
     string a = obj1.University_name;
     int s = obj1.staff_ID;
-    cout << "Name: " + x;  cout << "\nnational ID: " + y; cout << "\nage: " + z; cout << "\nUniversity Name: " + a;  cout << "\nStaff ID: " + s;
-    professors.push_back(obj1);
+    cout << "Name: " + x;  cout << "\nnational ID:y " + y; cout << "\nage: " + z; cout << "\nUniversity Name: " + a;  cout << "\nStaff ID: " + s;
+    fstream proffile;
+    proffile.open("proffile.txt", ios :: out);
+    proffile << x << endl;
+    proffile << y << endl;
+    proffile << z << endl;
+    proffile << a << endl;
+    proffile << s << endl;
+    proffile.close();
+    
 }
 
 void removeprof() {
     string pName;
     cout << "what is the professor's name: ";
     cin >> pName;
-    for (professor i : professors) {
-        if (i.Name == pName) {
-            auto it = find(professors.begin(), professors.end(), i);
-            professors.erase(it);
-        }
-    }
 }
 
 
@@ -113,7 +126,7 @@ void searchstudent() {
         }
     }
 }
-
+// comment
 void addstudent() {
     string Name;
     int Nat_ID;
@@ -143,6 +156,10 @@ void addstudent() {
 
 int main()
 {
+    //ofstream proffile("proffile.txt");
+   // proffile.close();
+    //ofstream studfile("studfile.txt");
+   // studfile.close();
     while (true) {
 
         int input;
@@ -153,19 +170,27 @@ int main()
         case 1:
             system("cls");
             addprof();
+            //ofstream proffile("proffile.txt");
+            //proffile.close();
             break;
         case 2:
             system("cls");
             addstudent();
+            //ofstream studfile("studfile.txt");
+           // studfile.close();
             break;
         case 3:
-            system("cls");
+            system("cls");            
+            //ofstream proffile("proffile.txt");
             showprofs();
+            //proffile.close();
             //getchar();
             break;
         case 4:
             system("cls");
+           // ofstream studfile("studfile.txt");
             showstudent();
+            //studfile.close();
             break;
         case 5:
             system("cls");
