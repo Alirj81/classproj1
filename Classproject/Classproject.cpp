@@ -34,12 +34,12 @@ student::student(string Name, int Nat_ID, int age, string University_name, int m
 // INTRODUCING PROFESSORS  
 
 vector <professor> professors;
-void showprofs() {
+/*void showprofs() {
     for (professor i : professors) {
         cout << "proffs name: " << i.Name << endl;
     }
 }
-
+*/
 void professor::Identification(int staff_ID) {
     cout << staff_ID;
 }
@@ -51,16 +51,36 @@ void professor::Identification(int staff_ID) {
 bool operator==(const student& student, const std::string& name) {
     return student.Name == name;
 }*/
-
+fstream proffile;
 void searchprofs() {
-    string pName;
-    cin >> pName;
-    for (auto i : professors) {
-        if (i.Name == pName) {
-            cout << i.age << endl << i.staff_ID << endl << i.University_name << endl << i.Nat_ID;
+    cout << "please input the Name: ";
+    string line;
+    string input;
+    cin >> input;
+    cout << "sign";
+    proffile.open("../../proffile.txt", ios::in);
+    if (proffile.is_open()) {
+        while (getline(proffile, line)) {
+            if (line == input) {
+                for (int i = 0; i < 4; i++) {
+                    getline(proffile, line);
+                    cout << line << endl;
+                }
+            }
         }
     }
 }
+void showprofs() {
+    string line;
+    proffile.open("../../proffile.txt", ios::in);
+    if (proffile.is_open()) {
+        while (getline(proffile, line)) {
+            cout << line << endl;
+        }
+    }
+     
+}
+
 // comment
 void addprof() {
     string file;
@@ -86,8 +106,8 @@ void addprof() {
     string a = obj1.University_name;
     int s = obj1.staff_ID;
     cout << "Name: " + x;  cout << "\nnational ID:y " + y; cout << "\nage: " + z; cout << "\nUniversity Name: " + a;  cout << "\nStaff ID: " + s;
-    fstream proffile;
-    proffile.open("proffile.txt", ios :: out);
+    //fstream proffile;
+    proffile.open("../../proffile.txt", ios :: out);
     proffile << x << endl;
     proffile << y << endl;
     proffile << z << endl;
@@ -198,7 +218,7 @@ int main()
             break;
         case 6:
             system("cls");
-            removeprof();
+            searchprofs();
         case 9:
             exit(0);
             break;
@@ -206,5 +226,14 @@ int main()
         }
     }
 }
+//fsfjksjmlek
+// 1. proje jadid 2. Add 3. print 4. search 5. over wright
 
-// 1.serch prof OK 2.search stu OK 3.khoshgel 4.pop
+/*
+while (curser != "\n") {
+    char curser;
+    fseek(file, -1, SEEK_CUR)
+    file.get(curser);
+
+}
+*/
