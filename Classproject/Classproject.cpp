@@ -1,16 +1,22 @@
-#include <iostream>
+#include <cppconn/driver.h> 
+#include <cppconn/exception.h> 
+#include <cppconn/statement.h> 
+#include <iostream> 
+#include <mysql_connection.h> 
+#include <mysql_driver.h> 
 #include "Classproject.h"
 #include <string.h>
 #include <string>
-#include <fstream>
-using namespace std;
 
+using namespace std;
 
 void person::Append_course(string course) {
     cout << course;
 
 }
-
+person::person() {
+    cout << "hi";
+}
 person::person(string Name, int myNat_ID, int myage, string myUniversity_name) {
     this->Name = Name;
     Nat_ID = myNat_ID;
@@ -24,6 +30,9 @@ professor::professor(string Name, int Nat_ID, int age, string University_name, i
     staff_ID = mystaff_ID;
 
 }
+professor::professor() {
+    cout << "hi";
+}
 
 student::student(string Name, int Nat_ID, int age, string University_name, int mystudent_ID) :
     person(Name, Nat_ID, age, University_name) /*, student_ID(student_ID)*/ {
@@ -34,55 +43,42 @@ student::student(string Name, int Nat_ID, int age, string University_name, int m
 // INTRODUCING PROFESSORS  
 
 vector <professor> professors;
-/*void showprofs() {
-    for (professor i : professors) {
-        cout << "proffs name: " << i.Name << endl;
-    }
+//SQL connection lead
+sql::Connection* connect() {
+
+    sql::mysql::MySQL_Driver* driver;
+    sql::Connection* con;
+    sql::Statement* stmt;
+    sql::ResultSet* res;
+    driver = sql::mysql::get_mysql_driver_instance();
+    con = driver->connect("tcp://127.0.0.1:3306", "root", "");
+    //con->setSchema("test");
+    stmt = con->createStatement();
+    stmt->execute("USE  Unidata");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Professor(id INT, name CHAR(25),age INT, Nat_ID INT, University_Name CHAR(25))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Student(id INT, name CHAR(25),age INT, Nat_ID INT, University_Name CHAR(25))");
+    stmt->execute("CREATE TABLE IF NOT EXISTS Course(id INT, name CHAR(25), University_Name CHAR(25))");
+    return con;
 }
-*/
+//Functions and methods appended from Professor class
 void professor::Identification(int staff_ID) {
     cout << staff_ID;
 }
 
-/*bool operator==(const professor& professor, const std::string& name) {
-    return professor.Name == name;
+
+
+void professor::showprofs() {
+
 }
 
-bool operator==(const student& student, const std::string& name) {
-    return student.Name == name;
-}*/
-fstream proffile;
-void searchprofs() {
-    cout << "please input the Name: ";
-    string line;
-    string input;
-    cin >> input;
-    cout << "sign";
-    proffile.open("../../proffile.txt", ios::in);
-    if (proffile.is_open()) {
-        while (getline(proffile, line)) {
-            if (line == input) {
-                for (int i = 0; i < 4; i++) {
-                    getline(proffile, line);
-                    cout << line << endl;
-                }
-            }
-        }
-    }
-}
-void showprofs() {
-    string line;
-    proffile.open("../../proffile.txt", ios::in);
-    if (proffile.is_open()) {
-        while (getline(proffile, line)) {
-            cout << line << endl;
-        }
-    }
-     
+void professor::searchprofs() {
+
 }
 
 // comment
-void addprof() {
+void professor::addprof() {
+    sql::Connection* con = connect();
+    sql::PreparedStatement* prep_stmt;
     string file;
     string Name;
     int Nat_ID;
@@ -106,18 +102,17 @@ void addprof() {
     string a = obj1.University_name;
     int s = obj1.staff_ID;
     cout << "Name: " + x;  cout << "\nnational ID:y " + y; cout << "\nage: " + z; cout << "\nUniversity Name: " + a;  cout << "\nStaff ID: " + s;
-    //fstream proffile;
-    proffile.open("../../proffile.txt", ios :: out);
-    proffile << x << endl;
-    proffile << y << endl;
-    proffile << z << endl;
-    proffile << a << endl;
-    proffile << s << endl;
-    proffile.close();
     
+    prep_stmt = con->prepareStatement("INSERT INTO Professor(id, age, Nat_ID, name, University_Name,) VALUES (?,?,?,?,?)");
+    //prep_stmt->setInt(1, s);
+    //prep_stmt->setInt(2, z);
+   // prep_stmt->setInt(3, y);
+    //prep_stmt->setString(4, x);
+   // prep_stmt->setString(5, a);
+   // prep_stmt->execute();
 }
 
-void removeprof() {
+void professor::removeprof() {
     string pName;
     cout << "what is the professor's name: ";
     cin >> pName;
@@ -170,16 +165,17 @@ void addstudent() {
     string a = obj2.University_name;
     int s = obj2.student_ID;
     cout << "Name: " + x;  cout << "\nnational ID: " + y; cout << "\nage: " + z; cout << "\nUniversity Name: " + a; cout << "\nStudent ID: " + s;
+
 }
 
+
+
 //INT MAIN
+//there is a object needed to be made to use the methods of the classes.
 
 int main()
 {
-    //ofstream proffile("proffile.txt");
-   // proffile.close();
-    //ofstream studfile("studfile.txt");
-   // studfile.close();
+    professor objprof;
     while (true) {
 
         int input;
@@ -189,28 +185,23 @@ int main()
         switch (input) {
         case 1:
             system("cls");
-            addprof();
-            //ofstream proffile("proffile.txt");
-            //proffile.close();
+            objprof.addprof();
+
             break;
         case 2:
             system("cls");
             addstudent();
-            //ofstream studfile("studfile.txt");
-           // studfile.close();
+
             break;
         case 3:
             system("cls");            
-            //ofstream proffile("proffile.txt");
-            showprofs();
-            //proffile.close();
-            //getchar();
+
+            objprof.showprofs();
+
             break;
         case 4:
             system("cls");
-           // ofstream studfile("studfile.txt");
-            showstudent();
-            //studfile.close();
+            objprof.searchprofs();
             break;
         case 5:
             system("cls");
@@ -218,9 +209,10 @@ int main()
             break;
         case 6:
             system("cls");
-            searchprofs();
+            objprof.removeprof();
         case 9:
             exit(0);
+            
             break;
 
         }
@@ -236,4 +228,57 @@ while (curser != "\n") {
     file.get(curser);
 
 }
+*/ 
+/*bool operator==(const professor& professor, const std::string& name) {
+    return professor.Name == name;
+}
+
+bool operator==(const student& student, const std::string& name) {
+    return student.Name == name;
+}*/
+//fstream proffile;
+/*void searchprofs() {
+    cout << "please input the Name: ";
+    string line;
+    string input;
+    cin >> input;
+    cout << "sign";
+    proffile.open("../../proffile.txt", ios::in);
+    if (proffile.is_open()) {
+        while (getline(proffile, line)) {
+            if (line == input) {
+                for (int i = 0; i < 4; i++) {
+                    getline(proffile, line);
+                    cout << line << endl;
+                }
+            }
+        }
+    }
+}
+void showprofs() {
+    string line;
+    //proffile.open("../../proffile.txt", ios::in);
+    //if (proffile.is_open()) {
+    //    while (getline(proffile, line)) {
+     //       cout << line << endl;
+    //    }
+    }
+
+}*/
+/*void showprofs() {
+    for (professor i : professors) {
+        cout << "proffs name: " << i.Name << endl;
+    }
+}
+*/
+/*
+filehandling 
+//fstream proffile;
+    //proffile.open("../../proffile.txt", ios :: out);
+    //proffile << x << endl;
+   // proffile << y << endl;
+   // proffile << z << endl;
+   // proffile << a << endl;
+   // proffile << s << endl;
+   // proffile.close();
 */

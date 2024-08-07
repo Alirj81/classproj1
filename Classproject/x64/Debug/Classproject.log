@@ -1,2 +1,5 @@
 ﻿  Classproject.cpp
+C:\Users\Alireza\Documents\C++\Classproject\classproj1\Classproject\Classproject.cpp(52,21): warning C4101: 'res': unreferenced local variable
   Classproject.vcxproj -> C:\Users\Alireza\Documents\C++\Classproject\classproj1\x64\Debug\Classproject.exe
+  File not found - lib64*.dll
+  0 File(s) copied

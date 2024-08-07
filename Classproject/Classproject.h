@@ -22,6 +22,7 @@ public:
 public:
 	void Append_course(string course);
 	person(string Name, int Nat_ID, int age, string University_name);
+	person();
 };
 
 
@@ -29,11 +30,14 @@ class professor : public person {
 public:
 	int staff_ID;
 	string Study_branch;
-	
+	void addprof();
+	void removeprof();
+	void showprofs();
+	void searchprofs();
 public:
 	void Identification(int staff_ID);
 	professor(string Name, int Nat_ID, int age, string University_name, int staff_ID);
-	
+	professor();
 };
 
 
